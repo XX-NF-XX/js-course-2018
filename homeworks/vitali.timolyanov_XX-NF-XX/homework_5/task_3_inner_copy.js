@@ -1,7 +1,7 @@
 function innerCopy(object, depth = 1) {
     const copy = Object.assign({}, object);
     if (depth > 0) {
-        const objectEntries = Object.entries(copy).filter(entry => typeof entry[1] === 'object');
+        const objectEntries = Object.entries(copy).filter(entry => typeof entry[1] === 'object' && !Array.isArray(entry[1]));
         objectEntries.forEach((entry) => {
             copy[entry[0]] = innerCopy(entry[1], depth - 1);
         });
